@@ -3,6 +3,27 @@
     ViewBag.Title = "Show";
 }
 
-<h2>Show</h2>
-
-@Model.TeacherFname @Model.TeacherLname  
+<h2>Details of Teacher</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Teacher's First Name</th>
+            <td> @Model.TeacherFname</td>
+        </tr>
+        <tr>
+            <th>Teacher's Last Name</th>
+            <td> @Model.TeacherLname</td>
+        </tr>
+        <tr>
+            <th>Employee Number</th>
+            <td>@Model.EmployeeNumber</td>
+        </tr>
+        <tr>
+            <th>Salary</th>
+            <td>@Model.Salary</td>
+        </tr>
+      
+    </thead>
+   
+</table>
+ 

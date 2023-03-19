@@ -9,7 +9,7 @@ namespace Assignment3_YujiaWang.Models
 {
     public class SchoolDbContext
     {
-
+        //Setting the properties which match the local school database
         private static string Server { get { return "localhost"; } }
 
         private static string User { get { return "root"; } }
@@ -22,6 +22,7 @@ namespace Assignment3_YujiaWang.Models
         private static string Password { get { return "root"; } }
 
 
+        //ConnectionString is a series of credentials used to connect to the database.
         protected static string ConnectionString
         {
             get
@@ -32,7 +33,14 @@ namespace Assignment3_YujiaWang.Models
 
         }
 
-
+        /// <summary>
+        /// Return a connection to the school database
+        /// </summary>
+        /// <example>
+        /// private SchoolDbContext School = new SchoolDbContext();
+        /// MySqlConnection Conn = School.AccessDatabase();
+        /// </example>
+        /// <returns>A MySqlConnection Object</returns>
         public MySqlConnection AccessDatabase()
         {
             return new MySqlConnection(ConnectionString);
