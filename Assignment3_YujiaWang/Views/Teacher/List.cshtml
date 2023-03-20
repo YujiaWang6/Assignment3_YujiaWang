@@ -8,10 +8,10 @@
 <h2>List of Teachers</h2>
 <p>Click the link for the detail of a teacher</p>
 
-@foreach(var teacher in Model)
-            {
-                <div>
-                  <a href="/Teacher/Show/@teacher.TeacherId">  @teacher.TeacherFname @teacher.TeacherLname</a>
-                </div>
-               
-            }
+@foreach (var teacher in Model)
+{
+    <div>
+        <a href="/Teacher/Show/@teacher.TeacherId">  @teacher.TeacherFname @teacher.TeacherLname</a>
+    </div>
+
+}

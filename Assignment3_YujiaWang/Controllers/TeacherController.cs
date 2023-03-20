@@ -25,7 +25,7 @@ namespace Assignment3_YujiaWang.Controllers
             return View(Teachers);
         }
 
-        // GET: /Teacher/Show
+        // GET: /Teacher/Show/{id}
         public ActionResult Show(int id)
         {
             TeacherDataController controller = new TeacherDataController();
