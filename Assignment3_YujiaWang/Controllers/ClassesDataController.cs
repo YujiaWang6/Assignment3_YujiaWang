@@ -24,7 +24,8 @@ namespace Assignment3_YujiaWang.Controllers
         /// <returns>A list of classes(calssCode, classId, className)</returns>
         
         [HttpGet]
-        public IEnumerable<Classes> ListClass()
+        [Route("api/ClassesData/ListClass/{searchKey?}")]
+        public IEnumerable<Classes> ListClass(string searchKey=null)
         {
             //create the instance connection to school database
             MySqlConnection Conn = School.AccessDatabase();
@@ -36,7 +37,9 @@ namespace Assignment3_YujiaWang.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //SQL query
-            cmd.CommandText = "Select * from classes";
+            cmd.CommandText = "Select * from classes where lower(classcode) like lower(@key)";
+
+            cmd.Parameters.AddWithValue("key", "%" + searchKey + "%");
 
             //gather result set of query into a variable
             MySqlDataReader resultSet = cmd.ExecuteReader();

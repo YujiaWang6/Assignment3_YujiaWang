@@ -25,7 +25,8 @@ namespace Assignment3_YujiaWang.Controllers
         /// <returns>A list of teachers(firstnames and lastnames)</returns>
 
         [HttpGet]
-        public IEnumerable<Teacher> ListTeacher()
+        [Route("api/TeacherData/ListTeacher/{searchKey?}")]
+        public IEnumerable<Teacher> ListTeacher(string searchKey = null)
         {
             //create the instance connection to school database
             MySqlConnection Conn = School.AccessDatabase();
@@ -37,7 +38,11 @@ namespace Assignment3_YujiaWang.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //SQL query
-            cmd.CommandText = "Select * from teachers";
+            cmd.CommandText = "select * from teachers where lower(teacherfname) like lower(@key) or lower(teacherlname) like lower(@key) or lower(concat(teacherfname, ' ' , teacherlname)) like lower(@key)";
+
+
+            cmd.Parameters.AddWithValue("key", "%" + searchKey + "%");
+            cmd.Prepare();
 
             //gather result set of query into a variable
             MySqlDataReader ResultSet = cmd.ExecuteReader();

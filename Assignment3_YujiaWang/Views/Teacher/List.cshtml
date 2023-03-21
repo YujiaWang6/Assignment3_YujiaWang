@@ -7,6 +7,11 @@
 
 <h2>List of Teachers</h2>
 <p>Click the link for the detail of a teacher</p>
+<form action="List" method="GET">
+    <input type="text" name="searchKey" />
+    <input type="submit" value="Search" />
+
+</form>
 
 @foreach (var teacher in Model)
 {

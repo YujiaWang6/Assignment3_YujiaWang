@@ -16,11 +16,11 @@ namespace Assignment3_YujiaWang.Controllers
         }
 
         //Get: Classes/List
-        public ActionResult List()
+        public ActionResult List(string searchKey = null)
         {
 
             ClassesDataController controller = new ClassesDataController();
-            IEnumerable<Classes> Classes = controller.ListClass();
+            IEnumerable<Classes> Classes = controller.ListClass(searchKey);
 
             return View(Classes);
         }

@@ -17,10 +17,10 @@ namespace Assignment3_YujiaWang.Controllers
 
 
         // GET: /Teacher/List
-        public ActionResult List()
+        public ActionResult List(string searchKey = null)
         {
             TeacherDataController controller = new TeacherDataController();
-            IEnumerable<Teacher> Teachers = controller.ListTeacher();
+            IEnumerable<Teacher> Teachers = controller.ListTeacher(searchKey);
 
             return View(Teachers);
         }
