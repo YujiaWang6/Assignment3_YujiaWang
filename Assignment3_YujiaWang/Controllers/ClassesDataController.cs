@@ -40,6 +40,7 @@ namespace Assignment3_YujiaWang.Controllers
             cmd.CommandText = "Select * from classes where lower(classcode) like lower(@key)";
 
             cmd.Parameters.AddWithValue("key", "%" + searchKey + "%");
+            cmd.Prepare();
 
             //gather result set of query into a variable
             MySqlDataReader resultSet = cmd.ExecuteReader();
