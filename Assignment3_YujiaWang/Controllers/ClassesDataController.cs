@@ -113,7 +113,9 @@ namespace Assignment3_YujiaWang.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //SQL query
-            cmd.CommandText = "Select * from classes left join teachers on classes.teacherid = teachers.teacherid where classid = " + id;
+            cmd.CommandText = "Select * from classes left join teachers on classes.teacherid = teachers.teacherid where classid =@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Prepare();
 
             //gather result set of query into a variable
             MySqlDataReader resultSet = cmd.ExecuteReader();
