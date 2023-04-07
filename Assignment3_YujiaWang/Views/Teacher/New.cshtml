@@ -5,7 +5,7 @@
 
 <h2>New Teacher</h2>
 <form methor="POST" action="/Teacher/Create" name="form1">
-    <div id="errormessage"></div>
+    <div id="errormessage" style="color:red;"></div>
     <div>
         <label for="TeacherFname">Teacher's First Name: </label>
         <input type="text" id="TeacherFname" name="TeacherFname" />
@@ -28,3 +28,60 @@
 </form>
 
 
+<script>
+    window.onload = pageReady;
+    function pageReady() {
+        var errormessage = document.getElementById("errormessage");
+
+        var formhandle = document.forms.form1;
+
+        formhandle.onsubmit = validation;
+        function validation() {
+            var teacherfname = formhandle.TeacherFname;
+            var teacherlname = formhandle.TeacherLname;
+            var employeenumber = formhandle.EmployeeNumber;
+            var salary = formhandle.Salary;
+
+            if (teacherfname.value === "") {
+                teacherfname.focus();
+                teacherfname.style.backgroundColor = "red";
+                errormessage.innerHTML = "Fill the required fills";
+                return false;
+            } else {
+                teacherfname.style.backgroundColor = "white";
+            };
+
+            if (teacherlname.value === "") {
+                teacherlname.focus();
+                teacherlname.style.backgroundColor = "red";
+                errormessage.innerHTML = "Fill the required fills";
+                return false;
+            } else {
+                teacherlname.style.backgroundColor = "white";
+            };
+
+            if (employeenumber.value === "") {
+                employeenumber.focus();
+                employeenumber.style.backgroundColor = "red";
+                errormessage.innerHTML = "Fill the required fills";
+                return false;
+            } else {
+                employeenumber.style.backgroundColor = "white";
+            };
+
+            if (salary.value === "") {
+                salary.focus();
+                salary.style.backgroundColor = "red";
+                errormessage.innerHTML = "Fill the required fills";
+                return false;
+            } else {
+                salary.style.backgroundColor = "white";
+            };
+
+        }
+        
+    }
+
+
+
+</script>

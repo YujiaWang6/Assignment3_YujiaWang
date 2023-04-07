@@ -37,7 +37,7 @@ namespace Assignment3_YujiaWang.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //SQL query
-            cmd.CommandText = "Select * from classes where lower(classcode) like lower(@key)";
+            cmd.CommandText = "Select * from classes left join teachers on classes.teacherid = teachers.teacherid where lower(classcode) like lower(@key) ";
 
             cmd.Parameters.AddWithValue("key", "%" + searchKey + "%");
             cmd.Prepare();
