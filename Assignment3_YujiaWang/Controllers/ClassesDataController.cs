@@ -37,7 +37,7 @@ namespace Assignment3_YujiaWang.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //SQL query
-            cmd.CommandText = "Select * from classes left join teachers on classes.teacherid = teachers.teacherid where lower(classcode) like lower(@key) ";
+            cmd.CommandText = "Select * from classes where lower(classcode) like lower(@key) ";
 
             cmd.Parameters.AddWithValue("key", "%" + searchKey + "%");
             cmd.Prepare();
@@ -55,6 +55,8 @@ namespace Assignment3_YujiaWang.Controllers
                 int ClassId = Convert.ToInt32(resultSet["classid"]);
                 string ClassCode = resultSet["classcode"].ToString();
                 string ClassName = resultSet["classname"].ToString();
+
+
 
 
                 //create a NewClass object which is the new instantiation of the Classes class
@@ -111,7 +113,7 @@ namespace Assignment3_YujiaWang.Controllers
             MySqlCommand cmd = Conn.CreateCommand();
 
             //SQL query
-            cmd.CommandText = "Select * from classes where classid = " + id;
+            cmd.CommandText = "Select * from classes left join teachers on classes.teacherid = teachers.teacherid where classid = " + id;
 
             //gather result set of query into a variable
             MySqlDataReader resultSet = cmd.ExecuteReader();
@@ -130,12 +132,19 @@ namespace Assignment3_YujiaWang.Controllers
                 string FinishDate = resultSet["finishdate"].ToString();
                 string ClassName = resultSet["classname"].ToString();
 
+                //access information
+                string teacherfname = resultSet["teacherfname"].ToString();
+                string teacherlname = resultSet["teacherlname"].ToString();
+
+
                 newClass.ClassCode = ClassCode;
                 newClass.ClassId = ClassId;
                 newClass.TeacherId = TeacherId;
                 newClass.ClassName = ClassName;
                 newClass.StartDate= StartDate;
                 newClass.FinishDate = FinishDate;
+                newClass.TeacherFname = teacherfname;
+                newClass.TeacherLname = teacherlname;
 
             }
 

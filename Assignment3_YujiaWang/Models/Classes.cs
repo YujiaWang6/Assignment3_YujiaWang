@@ -14,5 +14,10 @@ namespace Assignment3_YujiaWang.Models
         public string StartDate;
         public string FinishDate;
         public int ClassId;
+
+
+        //add more details of teacher to link class with teacher
+        public string TeacherFname;
+        public string TeacherLname;
     }
 }

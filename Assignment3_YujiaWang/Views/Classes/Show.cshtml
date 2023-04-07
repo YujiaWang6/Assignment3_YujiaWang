@@ -24,9 +24,20 @@
     </tr>
     <tr>
         <th>Teacher's link</th>
-        <td><a href="/Teacher/Show/@Model.TeacherId">Click here</a></td>
+        <td id="teacher"><a id="link" href="/Teacher/Show/@Model.TeacherId">@Model.TeacherFname @Model.TeacherLname</a></td>
     </tr>
 
 
 </table>
 
+
+<script>
+    //if there is no teacher link to this course, showing TBD instead of teacher's name and link
+    var t = document.getElementById("teacher");
+    var link = document.getElementById("link");
+
+    if (link.innerHTML == " ") { 
+        t.innerHTML = "TBD";
+    }
+
+</script>
