@@ -1,0 +1,30 @@
+﻿@model Assignment3_YujiaWang.Models.Teacher
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>New Teacher</h2>
+<form methor="POST" action="/Teacher/Create" name="form1">
+    <div id="errormessage"></div>
+    <div>
+        <label for="TeacherFname">Teacher's First Name: </label>
+        <input type="text" id="TeacherFname" name="TeacherFname" />
+    </div>
+    <div>
+        <label for="TeacherLname">Teacher's Last Name: </label>
+        <input type="text" id="TeacherLname" name="TeacherLname" />
+    </div>
+    <div>
+        <label for="EmployeeNumber">Employee Number: </label>
+        <input type="text" id="EmployeeNumber" name="EmployeeNumber" />
+    </div>
+    <div>
+        <label for="Salary">Salary: </label>
+        <input type="text" id="Salary" name="Salary" />
+    </div>
+    <div>
+        <button type="submit">Insert into Database</button>
+    </div>
+</form>
+
+

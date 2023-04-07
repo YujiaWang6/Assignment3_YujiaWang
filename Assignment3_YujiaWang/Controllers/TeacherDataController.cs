@@ -148,5 +148,66 @@ namespace Assignment3_YujiaWang.Controllers
 
         }
 
+
+        /// <summary>
+        /// Delete a Teacher from database
+        /// </summary>
+        /// <param name="id">The teacher primary key</param>
+        /// <example>POST: api/teacherdata/DeleteTeacher/3</example>
+        [HttpPost]
+        public void DeleteTeacher(int id)
+        {
+            //Create an instance of a connection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //open connection
+            Conn.Open();
+            
+            //Establish a new command for database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL QUERY
+            cmd.CommandText = "Delete from teachers where teacherid=@id";
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            //close the connection
+            Conn.Close();
+
+        }
+
+
+
+        [HttpGet]
+        public void CreateTeacher([FromBody]Teacher NewTeacher)
+        {
+            //Create an instance of a connection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //open connection
+            Conn.Open();
+
+            //Establish a new command for database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL COMMAND
+            cmd.CommandText = "Insert into teachers(teacherfname, teacherlname, employeenumber, hiredate, salary) VALUES(@teacherfname, @teacherlname, @employeenumber, CURRENT_DATE(), @salary) ";
+            cmd.Parameters.AddWithValue("@teacherfname", NewTeacher.TeacherFname);
+            cmd.Parameters.AddWithValue("@teacherlname", NewTeacher.TeacherLname);
+            cmd.Parameters.AddWithValue("@EmployeeNumber", NewTeacher.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@salary", NewTeacher.Salary);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            //Close connection
+            Conn.Close();
+
+        }
+
+
+
     }
 }

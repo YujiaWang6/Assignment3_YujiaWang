@@ -33,5 +33,46 @@ namespace Assignment3_YujiaWang.Controllers
 
             return View(NewTeacher);
         }
+
+        // GET: /Teacher/DeleteConfirm/{id}
+        public ActionResult DeleteConfirm(int id)
+        {
+            TeacherDataController controller = new TeacherDataController();
+            Teacher NewTeacher = controller.DetailTeacherInfo(id);
+            return View(NewTeacher);
+        }
+
+
+        // POST: /Teacher/Delete/{id}
+        public ActionResult Delete(int id)
+        {
+            TeacherDataController controller = new TeacherDataController();
+            controller.DeleteTeacher(id);
+            return RedirectToAction("List");
+        }
+
+        //GET: /Teacher/New
+        public ActionResult New()
+        {
+            return View();
+        }
+
+        //POST: /Teacher/Create
+        public ActionResult Create(string TeacherFname, string TeacherLname, string EmployeeNumber, decimal Salary)
+        {
+
+            Teacher NewTeacher = new Teacher();
+            NewTeacher.TeacherFname = TeacherFname;
+            NewTeacher.TeacherLname= TeacherLname;
+            NewTeacher.Salary = Salary;
+            NewTeacher.EmployeeNumber= EmployeeNumber;
+
+            TeacherDataController controller = new TeacherDataController();
+            controller.CreateTeacher(NewTeacher);
+
+            return RedirectToAction("List");
+        }
+
+
     }
 }
