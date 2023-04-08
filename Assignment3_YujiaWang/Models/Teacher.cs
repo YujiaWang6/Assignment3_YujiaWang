@@ -13,5 +13,14 @@ namespace Assignment3_YujiaWang.Models
         public int TeacherId;
         public decimal Salary;
         public string EmployeeNumber;
+
+
+        //parameter-less constructor function
+        public Teacher()
+        {
+
+        }
+
+
     }
 }
