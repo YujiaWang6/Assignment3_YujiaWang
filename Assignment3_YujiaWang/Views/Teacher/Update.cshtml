@@ -10,25 +10,86 @@
     </nav>
 </div>
 <h2>New Teacher</h2>
-<form methor="POST" action="/Teacher/Update/@Model.TeacherId">
+<form methor="POST" action="/Teacher/Update/@Model.TeacherId" name="form1">
     <div id="errormessage" style="color:red;"></div>
     <div>
         <label for="TeacherFname">Teacher's First Name: </label>
-        <input type="text" id="TeacherFname" name="TeacherFname" value="@Model.TeacherFname"/>
+        <input type="text" id="TeacherFname" name="TeacherFname" value="@Model.TeacherFname" />
     </div>
     <div>
         <label for="TeacherLname">Teacher's Last Name: </label>
-        <input type="text" id="TeacherLname" name="TeacherLname" value="@Model.TeacherLname"/>
+        <input type="text" id="TeacherLname" name="TeacherLname" value="@Model.TeacherLname" />
     </div>
     <div>
         <label for="EmployeeNumber">Employee Number: </label>
-        <input type="text" id="EmployeeNumber" name="EmployeeNumber" value="@Model.EmployeeNumber"/>
+        <input type="text" id="EmployeeNumber" name="EmployeeNumber" value="@Model.EmployeeNumber" />
     </div>
     <div>
         <label for="Salary">Salary: </label>
-        <input type="text" id="Salary" name="Salary" value="@Model.Salary"/>
+        <input type="text" id="Salary" name="Salary" value="@Model.Salary" />
     </div>
     <div>
         <button type="submit">Update</button>
     </div>
 </form>
+
+
+
+
+<script>
+    window.onload = pageReady;
+    function pageReady() {
+        var errormessage = document.getElementById("errormessage");
+
+        var formhandle = document.forms.form1;
+
+        formhandle.onsubmit = validation;
+        function validation() {
+            var teacherfname = formhandle.TeacherFname;
+            var teacherlname = formhandle.TeacherLname;
+            var employeenumber = formhandle.EmployeeNumber;
+            var salary = formhandle.Salary;
+
+            if (teacherfname.value === "") {
+                teacherfname.focus();
+                teacherfname.style.backgroundColor = "red";
+                errormessage.innerHTML = "Fill the required fills";
+                return false;
+            } else {
+                teacherfname.style.backgroundColor = "white";
+            };
+
+            if (teacherlname.value === "") {
+                teacherlname.focus();
+                teacherlname.style.backgroundColor = "red";
+                errormessage.innerHTML = "Fill the required fills";
+                return false;
+            } else {
+                teacherlname.style.backgroundColor = "white";
+            };
+
+            if (employeenumber.value === "") {
+                employeenumber.focus();
+                employeenumber.style.backgroundColor = "red";
+                errormessage.innerHTML = "Fill the required fills";
+                return false;
+            } else {
+                employeenumber.style.backgroundColor = "white";
+            };
+
+            if (salary.value === "") {
+                salary.focus();
+                salary.style.backgroundColor = "red";
+                errormessage.innerHTML = "Fill the required fills";
+                return false;
+            } else {
+                salary.style.backgroundColor = "white";
+            };
+
+        }
+
+    }
+
+
+
+</script>
