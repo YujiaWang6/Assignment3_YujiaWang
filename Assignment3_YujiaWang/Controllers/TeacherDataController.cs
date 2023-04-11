@@ -179,7 +179,18 @@ namespace Assignment3_YujiaWang.Controllers
         }
 
 
-
+        /// <summary>
+        /// Create a new Teacher into database
+        /// </summary>
+        /// <param name="NewTeacher">contains all the parameters such as teacherFname, teacherLname, EmployeeNumber, Salary</param>
+        /// <example>curl -H "Content-Type:application/json" -d @teacherdata.json "http://localhost:58182/api/TeacherData/CreateTeacher/10"
+        /// {
+        ///     "TeacherFname":"Yujia",
+        ///     "TeacherLname":"Wang",
+        ///     "EmployeeNumber":"123",
+        ///     "Salary":"50"
+        /// }
+        /// </example>
         [HttpGet]
         public void CreateTeacher([FromBody]Teacher NewTeacher)
         {
@@ -207,6 +218,47 @@ namespace Assignment3_YujiaWang.Controllers
 
         }
 
+        /// <summary>
+        /// Update a teacher's info into database
+        /// </summary>
+        /// <param name="id">ID of a teacher (primary key)</param>
+        /// <param name="SelectedTeacher">contains all the parameters such as teacherFname, teacherLname, EmployeeNumber, Salary</param>
+        /// <example>curl -H "Content-Type:application/json" -d @teacherdata.json "http://localhost:58182/api/TeacherData/UpdateTeacher/17"
+        /// {
+        ///     "TeacherFname":"Yujia",
+        ///     "TeacherLname":"Wang",
+        ///     "EmployeeNumber":"321",
+        ///     "Salary":"50"
+        /// }
+        /// </example>
+        [HttpPost]
+        public void UpdateTeacher(int id, [FromBody]Teacher TeacherInfo)
+        {
+            //Create an instance of a connection
+            MySqlConnection Conn = School.AccessDatabase();
+
+            //open connection
+            Conn.Open();
+
+            //Establish a new command for database
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL COMMAND
+            cmd.CommandText = "Update teachers set teacherfname=@teacherfname, teacherlname=@teacherlname, employeenumber=@employeenumber, salary=@salary where teacherid=@teacherId";
+            cmd.Parameters.AddWithValue("@teacherfname", TeacherInfo.TeacherFname);
+            cmd.Parameters.AddWithValue("@teacherlname", TeacherInfo.TeacherLname);
+            cmd.Parameters.AddWithValue("@EmployeeNumber", TeacherInfo.EmployeeNumber);
+            cmd.Parameters.AddWithValue("@salary", TeacherInfo.Salary);
+            cmd.Parameters.AddWithValue("@teacherId", id);
+            cmd.Prepare();
+
+            cmd.ExecuteNonQuery();
+
+            //Close connection
+            Conn.Close();
+
+
+        }
 
 
     }
