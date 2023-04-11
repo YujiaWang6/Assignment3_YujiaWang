@@ -223,13 +223,15 @@ namespace Assignment3_YujiaWang.Controllers
         /// </summary>
         /// <param name="id">ID of a teacher (primary key)</param>
         /// <param name="SelectedTeacher">contains all the parameters such as teacherFname, teacherLname, EmployeeNumber, Salary</param>
-        /// <example>curl -H "Content-Type:application/json" -d @teacherdata.json "http://localhost:58182/api/TeacherData/UpdateTeacher/17"
+        /// <example>using CURL request with a JSON object to update:
+        /// notepad teacherdata.json
         /// {
         ///     "TeacherFname":"Yujia",
         ///     "TeacherLname":"Wang",
         ///     "EmployeeNumber":"321",
         ///     "Salary":"50"
         /// }
+        /// curl -H "Content-Type:application/json" -d @teacherdata.json "http://localhost:58182/api/TeacherData/UpdateTeacher/17"
         /// </example>
         [HttpPost]
         public void UpdateTeacher(int id, [FromBody]Teacher TeacherInfo)
