@@ -16,6 +16,12 @@ namespace Assignment3_YujiaWang.Models
         public DateTime HireDate;
 
 
+        //add more details of class to link class with teacher
+        public string ClassCode;
+        public string ClassName;
+        public int ClassId;
+
+
         //parameter-less constructor function
         public Teacher()
         {
