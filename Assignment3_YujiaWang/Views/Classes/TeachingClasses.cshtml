@@ -1,0 +1,14 @@
+﻿@model IEnumerable<Assignment3_YujiaWang.Models.Classes>
+@{
+    ViewBag.Title = "TeachingClasses";
+}
+
+<h2>Teaching Classes</h2>
+
+@foreach (var teachingclass in Model)
+{
+
+    <div>
+        <a href="/Classes/Show/@teachingclass.ClassId">@teachingclass.ClassCode</a>
+    </div>
+}

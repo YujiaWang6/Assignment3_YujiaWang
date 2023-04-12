@@ -33,5 +33,16 @@ namespace Assignment3_YujiaWang.Controllers
 
             return View(classes);
         }
+
+        //get: Classes/TeachingClasses/{teacherId}
+        public ActionResult TeachingClasses(int id)
+        {
+            ClassesDataController controller = new ClassesDataController();
+            IEnumerable<Classes> teachingClasses = controller.ListClassesForTeacher(id);
+
+            return View(teachingClasses);
+        }
+
+
     }
 }

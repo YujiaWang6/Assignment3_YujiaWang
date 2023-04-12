@@ -151,6 +151,7 @@ namespace Assignment3_YujiaWang.Controllers
         }
 
 
+
         /// <summary>
         /// Delete a Teacher from database
         /// </summary>
@@ -263,6 +264,12 @@ namespace Assignment3_YujiaWang.Controllers
 
 
         }
+
+
+
+
+
+
 
 
     }

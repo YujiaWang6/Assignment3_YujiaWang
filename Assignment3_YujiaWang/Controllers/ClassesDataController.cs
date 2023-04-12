@@ -157,5 +157,79 @@ namespace Assignment3_YujiaWang.Controllers
             return newClass;
         }
 
+
+        /// <summary>
+        /// Return a list of classes which are teached by selected teacher
+        /// </summary>
+        /// <param name="teacherId">ID of the selected teacher (primary key)</param>
+        /// <example>
+        /// GET: api/ClassesData/ListClassesForTeacher/{teacherId} -> List of classes
+        /// </example>
+        /// <example>
+        /// GET: api/ClassesData/ListClassesForTeacher/5 ->
+        /// <CLASSES>
+        ///     <ClassCode>http5103</ClassCode>
+        ///     <ClassId>3</ClassId>
+        ///     <ClassName>Web Programming</ClassName>
+        ///     <TeacherFname>Jessica</TeacherFname>
+        ///     <TeacherLname>Morris</TeacherLname>
+        /// </CLASSES>
+        /// <CLASSES>
+        ///     <ClassCode>http5204</ClassCode>
+        ///     <ClassId>9</ClassId>
+        ///     <ClassName>Mobile Development</ClassName>
+        ///     <TeacherFname>Jessica</TeacherFname>
+        ///     <TeacherLname>Morris</TeacherLname>
+        /// </CLASSES>
+        /// </example>
+        /// <returns>A list of classes</returns>
+        [HttpGet]
+        [Route("api/ClassesData/ListClassesForTeacher/{teacherId}")]
+        public IEnumerable<Classes> ListClassesForTeacher(int teacherId)
+        {
+            MySqlConnection Conn = School.AccessDatabase();
+            Conn.Open();
+            MySqlCommand cmd = Conn.CreateCommand();
+
+            //SQL COMMAND
+            cmd.CommandText = "select * from classes left join teachers on classes.teacherid = teachers.teacherid where classes.teacherid = @id";
+            cmd.Parameters.AddWithValue("@id", teacherId);
+            cmd.Prepare();
+
+            MySqlDataReader resultSet = cmd.ExecuteReader();
+
+            List<Classes> classes = new List<Classes>();
+
+            while (resultSet.Read())
+            {
+                
+                string ClassCode = resultSet["classcode"].ToString() ;
+                string ClassName = resultSet["classname"].ToString();
+                int ClassId = Convert.ToInt32(resultSet["classid"]);
+                string teacherFname = resultSet["teacherfname"].ToString();
+                string teacherLname = resultSet["teacherlname"].ToString();
+
+                Classes selectedClass = new Classes();
+
+                selectedClass.ClassCode = ClassCode;
+                selectedClass.ClassName= ClassName;
+                selectedClass.ClassId= ClassId;
+                selectedClass.TeacherFname = teacherFname;
+                selectedClass.TeacherLname = teacherLname;
+
+
+                classes.Add(selectedClass);
+
+            }
+
+            Conn.Close();
+
+            return classes;
+
+
+        }
+
+
+
     }
 }
