@@ -20,7 +20,7 @@ namespace Assignment3_YujiaWang.Controllers
         {
 
             ClassesDataController controller = new ClassesDataController();
-            IEnumerable<Classes> Classes = controller.ListClass(searchKey);
+            IEnumerable<Classes> Classes = controller.ListClasses(searchKey);
 
             return View(Classes);
         }

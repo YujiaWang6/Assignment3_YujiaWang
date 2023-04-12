@@ -25,7 +25,7 @@ namespace Assignment3_YujiaWang.Controllers
         
         [HttpGet]
         [Route("api/ClassesData/ListClass/{searchKey?}")]
-        public IEnumerable<Classes> ListClass(string searchKey=null)
+        public IEnumerable<Classes> ListClasses(string searchKey=null)
         {
             //create the instance connection to school database
             MySqlConnection Conn = School.AccessDatabase();

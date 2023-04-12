@@ -21,7 +21,7 @@ namespace Assignment3_YujiaWang.Controllers
         public ActionResult List(string searchKey = null)
         {
             TeacherDataController controller = new TeacherDataController();
-            IEnumerable<Teacher> Teachers = controller.ListTeacher(searchKey);
+            IEnumerable<Teacher> Teachers = controller.ListTeachers(searchKey);
 
             return View(Teachers);
         }

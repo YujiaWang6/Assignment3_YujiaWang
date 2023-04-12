@@ -20,13 +20,13 @@ namespace Assignment3_YujiaWang.Controllers
         /// Return a list of Teacher in the database
         /// </summary>
         /// <example>
-        /// GET: api/TeacherData/ListTeacher
+        /// GET: api/TeacherData/ListTeachers
         /// </example>
         /// <returns>A list of teachers(firstnames and lastnames)</returns>
 
         [HttpGet]
         [Route("api/TeacherData/ListTeacher/{searchKey?}")]
-        public IEnumerable<Teacher> ListTeacher(string searchKey = null)
+        public IEnumerable<Teacher> ListTeachers(string searchKey = null)
         {
             //create the instance connection to school database
             MySqlConnection Conn = School.AccessDatabase();
@@ -131,6 +131,7 @@ namespace Assignment3_YujiaWang.Controllers
                 string TeacherLname = (string)ResultSet["teacherlname"];
                 decimal Salary = (decimal)ResultSet["salary"];
                 string EmployeeNumber = (string)ResultSet["employeenumber"];
+                DateTime HireDate = (DateTime)ResultSet["hiredate"];
 
 
                 NewTeacher.TeacherId = TeacherId;
@@ -138,6 +139,7 @@ namespace Assignment3_YujiaWang.Controllers
                 NewTeacher.TeacherLname = TeacherLname;
                 NewTeacher.Salary = Salary;
                 NewTeacher.EmployeeNumber= EmployeeNumber;
+                NewTeacher.HireDate = HireDate;
             }
 
             //close the connection
