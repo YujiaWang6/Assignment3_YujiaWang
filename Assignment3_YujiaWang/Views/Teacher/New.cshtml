@@ -5,11 +5,11 @@
 
 <div>
     <nav>
-        <a href="/Author/List">Back to Teachers</a>
+        <a href="/Teacher/List">Back to Teachers</a>
     </nav>
 </div>
 <h2>New Teacher</h2>
-<form method="POST" action="/Teacher/Create" name="form1">
+<form method="POST" action="/Teacher/Create" name="form1" onsubmit="return validation();">
     <div id="errormessage" style="color:red;"></div>
     <div>
         <label for="TeacherFname">Teacher's First Name: </label>
@@ -34,18 +34,14 @@
 
 
 <script>
-    window.onload = pageReady;
-    function pageReady() {
+
+    function validation() {
+
         var errormessage = document.getElementById("errormessage");
-
-        var formhandle = document.forms.form1;
-
-        formhandle.onsubmit = validation;
-        function validation() {
-            var teacherfname = formhandle.TeacherFname;
-            var teacherlname = formhandle.TeacherLname;
-            var employeenumber = formhandle.EmployeeNumber;
-            var salary = formhandle.Salary;
+            var teacherfname = document.getElementById("TeacherFname");
+            var teacherlname = document.getElementById("TeacherLname");
+            var employeenumber = document.getElementById("EmployeeNumber");
+            var salary = document.getElementById("Salary");
 
             if (teacherfname.value === "") {
                 teacherfname.focus();
@@ -78,6 +74,7 @@
                 salary.focus();
                 salary.style.backgroundColor = "red";
                 errormessage.innerHTML = "Fill the required fills";
+                
                 return false;
             } else {
                 salary.style.backgroundColor = "white";
@@ -85,7 +82,7 @@
 
         }
         
-    }
+    
 
 
 

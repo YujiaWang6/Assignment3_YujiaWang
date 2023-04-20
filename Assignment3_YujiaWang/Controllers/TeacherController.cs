@@ -125,6 +125,28 @@ namespace Assignment3_YujiaWang.Controllers
             return RedirectToAction("Show/" + id);
         }
 
+        /// <summary>
+        /// An AJAX UPDATE page which will send the HTTP request to the api controller and update teacher's info by using JAVASCRIPT
+        /// </summary>
+        /// <param name="id">ID of teacher (primary key)</param>
+        /// <returns></returns>
+        public ActionResult AJAX_Update(int id)
+        {
+
+            TeacherDataController controller = new TeacherDataController(); ;
+            Teacher selectedTeacher = controller.DetailTeacherInfo(id);
+            return View(selectedTeacher);
+        }
+
+        /// <summary>
+        /// An AJAX NEW page which will send the HTTP request to api controller and create a new teacher by using JAVASCRIPT
+        /// </summary>
+        /// <returns></returns>
+        //GET: /Teacher/AJAX_New
+        public ActionResult AJAX_New()
+        {
+            return View();
+        }
 
     }
 }

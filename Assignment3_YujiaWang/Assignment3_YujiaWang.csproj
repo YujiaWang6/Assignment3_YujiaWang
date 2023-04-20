@@ -261,6 +261,8 @@
     <Content Include="Views\Teacher\New.cshtml" />
     <Content Include="Views\Teacher\Update.cshtml" />
     <Content Include="Views\Classes\TeachingClasses.cshtml" />
+    <Content Include="Views\Teacher\AJAX_Update.cshtml" />
+    <Content Include="Views\Teacher\AJAX_New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

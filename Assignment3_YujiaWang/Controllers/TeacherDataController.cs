@@ -186,7 +186,7 @@ namespace Assignment3_YujiaWang.Controllers
         /// Create a new Teacher into database
         /// </summary>
         /// <param name="NewTeacher">contains all the parameters such as teacherFname, teacherLname, EmployeeNumber, Salary</param>
-        /// <example>curl -H "Content-Type:application/json" -d @teacherdata.json "http://localhost:58182/api/TeacherData/CreateTeacher/10"
+        /// <example>curl -H "Content-Type:application/json" -d @teacherdata.json "http://localhost:61041/api/TeacherData/CreateTeacher/10"
         /// {
         ///     "TeacherFname":"Yujia",
         ///     "TeacherLname":"Wang",
@@ -194,7 +194,7 @@ namespace Assignment3_YujiaWang.Controllers
         ///     "Salary":"50"
         /// }
         /// </example>
-        [HttpGet]
+        [HttpPost]
         public void CreateTeacher([FromBody]Teacher NewTeacher)
         {
             //Create an instance of a connection
@@ -234,7 +234,7 @@ namespace Assignment3_YujiaWang.Controllers
         ///     "EmployeeNumber":"321",
         ///     "Salary":"50"
         /// }
-        /// curl -H "Content-Type:application/json" -d @teacherdata.json "http://localhost:58182/api/TeacherData/UpdateTeacher/17"
+        /// curl -H "Content-Type:application/json" -d @teacherdata.json "http://localhost:61041/api/TeacherData/UpdateTeacher/17"
         /// </example>
         [HttpPost]
         public void UpdateTeacher(int id, [FromBody]Teacher TeacherInfo)

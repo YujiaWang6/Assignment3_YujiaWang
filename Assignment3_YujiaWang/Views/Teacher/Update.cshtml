@@ -9,8 +9,8 @@
         <a href="/Teacher/Show/@Model.TeacherId">Back</a>
     </nav>
 </div>
-<h2>New Teacher</h2>
-<form method="POST" action="/Teacher/Updated/@Model.TeacherId" name="form1">
+<h2>Update Teacher @Model.TeacherFname @Model.TeacherLname</h2>
+<form method="POST" action="/Teacher/Updated/@Model.TeacherId" name="form1" onsubmit="return validation();">
     <div id="errormessage" style="color:red;"></div>
     <div>
         <label for="TeacherFname">Teacher's First Name: </label>
@@ -37,18 +37,13 @@
 
 
 <script>
-    window.onload = pageReady;
-    function pageReady() {
-        var errormessage = document.getElementById("errormessage");
 
-        var formhandle = document.forms.form1;
-
-        formhandle.onsubmit = validation;
         function validation() {
-            var teacherfname = formhandle.TeacherFname;
-            var teacherlname = formhandle.TeacherLname;
-            var employeenumber = formhandle.EmployeeNumber;
-            var salary = formhandle.Salary;
+            var errormessage = document.getElementById("errormessage");
+            var teacherfname = document.getElementById("TeacherFname");
+            var teacherlname = document.getElementById("TeacherLname");
+            var employeenumber = document.getElementById("EmployeeNumber");
+            var salary = document.getElementById("Salary");
 
             if (teacherfname.value === "") {
                 teacherfname.focus();
@@ -88,7 +83,7 @@
 
         }
 
-    }
+    
 
 
 

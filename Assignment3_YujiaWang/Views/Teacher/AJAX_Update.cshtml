@@ -1,0 +1,68 @@
+﻿@model Assignment3_YujiaWang.Models.Teacher
+@{
+    ViewBag.Title = "AJAX_Update";
+}
+
+<div>
+    <nav>
+        <a href="/Teacher/Show/@Model.TeacherId">Back</a>
+    </nav>
+</div>
+
+<h2>Update information about @Model.TeacherFname @Model.TeacherLname</h2>
+
+
+    <div>
+        <label for="TeacherFname">Teacher's First Name: </label>
+        <input type="text" id="TeacherFname" name="TeacherFname" value="@Model.TeacherFname" />
+    </div>
+    <div>
+        <label for="TeacherLname">Teacher's Last Name: </label>
+        <input type="text" id="TeacherLname" name="TeacherLname" value="@Model.TeacherLname" />
+    </div>
+    <div>
+        <label for="EmployeeNumber">Employee Number: </label>
+        <input type="text" id="EmployeeNumber" name="EmployeeNumber" value="@Model.EmployeeNumber" />
+    </div>
+    <div>
+        <label for="Salary">Salary: </label>
+        <input type="text" id="Salary" name="Salary" value="@Model.Salary" />
+    </div>
+    <div>
+        <button onclick="UpdateTeacher(@Model.TeacherId);">Update</button>
+    </div>
+
+<script>
+
+    function UpdateTeacher(TeacherId) {
+        var URL = "http://localhost:61041/api/TeacherData/UpdateTeacher/" + TeacherId;
+        
+        var xhr = new XMLHttpRequest();
+
+        var TeacherFname = document.getElementById("TeacherFname").value;
+        var TeacherLname = document.getElementById("TeacherLname").value;
+        var EmployeeNumber = document.getElementById("EmployeeNumber").value;
+        var Salary = document.getElementById("Salary").value;
+
+        /*Insert format will be JSON */
+
+        var UpdateTeacher = {
+            "TeacherFname": TeacherFname,
+            "TeacherLname": TeacherLname,
+            "EmployeeNumber": EmployeeNumber,
+            "Salary": Salary
+        };
+
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+
+            }
+        };
+
+        xhr.open("POST", URL, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(JSON.stringify(UpdateTeacher));
+    }
+
+</script>
